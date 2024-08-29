@@ -21,14 +21,14 @@ document.addEventListener("DOMContentLoaded", function () {
             var password = document.getElementById("password").value;
             // Verificación de usuario y contraseña
             if (username === "admin" && password === "1234") {
-                window.location.href= "dashboard.html";
+                window.location.href = "dashboard.html";
             } else {
                 alert("Usuario o contraseña incorrectos");
             }
         });
     }
     var registroForm = document.getElementById("registroForm");
-    if(registroForm) {
+    if (registroForm) {
         registroForm.addEventListener("submit", function (event) {
             event.preventDefault();
             var newUser = document.getElementById("newUser").value;
@@ -43,9 +43,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 var linkEstudiantes = document.getElementById("linkEstudiantes");
 var linkAsignaturas = document.getElementById("linkAsignaturas");
-var contenedorEstudiantes = document.getElementById("contenedor Estudiantes");
+var contenedorEstudiantes = document.getElementById("contenedorEstudiantes");
 var contenedorAsignaturas = document.getElementById("contenedorAsignaturas");
-
 linkEstudiantes.addEventListener("click", function (event) {
     event.preventDefault();
     contenedorEstudiantes.classList.add("active");
@@ -57,66 +56,41 @@ linkAsignaturas.addEventListener("click", function (event) {
     contenedorEstudiantes.classList.remove("active");
 });
 
+/*Funcion agregar Filas*/
+
 function agregarFila(tabla, id, nombre) {
     var row = tabla.insertRow();
     var cellId = row.insertCell(0);
     var cellNombre = row.insertCell(1);
     var cellAcciones = row.insertCell(2);
+
     cellId.textContent = id;
     cellNombre.textContent = nombre;
     cellAcciones.innerHTML = '<button class="btn-editar">Editar</button> <button class="btn-eliminar">Eliminar</button>';
 }
+
+/*manejo de eventos para estudiantes*/
+
 var tablaEstudiantes = document.querySelector("#contenedorEstudiantes table tbody");
 var btnAgregarEstudiante = document.getElementById("agregarEstudiante");
 if (btnAgregarEstudiante) {
     btnAgregarEstudiante.addEventListener("click", function () {
-        var id = tablaEstudiantes.rows.length+ 1;
+        var id = tablaEstudiantes.rows.length + 1;
         var nombre = prompt("Ingrese el nombre del estudiante:");
         if (nombre) {
             agregarFila(tablaEstudiantes, id, nombre);
         }
     });
 }
+
+/*Manejo de Eventos para asignaturas */
+
 var tablaAsignaturas = document.querySelector("#contenedorAsignaturas table tbody");
 var btnAgregarAsignatura = document.getElementById("agregarAsignatura");
 if (btnAgregarAsignatura) {
     btnAgregarAsignatura.addEventListener("click", function () {
-        var id = tablaAsignaturas.rows.length+ 1;
+        var id = tablaAsignaturas.rows.length + 1;
         var nombre = prompt("Ingrese el nombre de la asignatura:");
-        if (nombre) {
-            agregarFila(tablaAsignaturas, id, nombre);
-        }
-    });
-}
-
-function agregarFila(tabla, id, nombre) {
-    var row = tabla.insertRow();
-    var cellId = row.insertCell(0);
-    var cellNombre = row.insertCell(1);
-    var cellAcciones = row.insertCell(2);
-    cellId.textContent = id;
-    cellNombre.textContent = nombre;
-    cellAcciones.innerHTML = '<button class="btn-editar">Editar</button> <button class="btn-eliminar">Eliminar</button>';
-}
-
-var tablaEstudiantes = document.querySelector("#contenedorEstudiantes table tbody");
-var btnAgregarEstudiante= document.getElementById("agregarEstudiante");
-if(btnAgregarEstudiante) {
-    btnAgregarEstudiante.addEventListener("click", function() {
-        var id= tablaEstudiantes.rows.length ;
-        var nombre =prompt("Ingrese el nombre del estudiante:");
-        if(nombre) {
-            agregarFila (tablaEstudiantes, id, nombre);
-        }
-    });
-}
-
-var tablaAsignaturas= document.querySelector("#contenedorAsignaturas table tbody");
-var btnAgregarAsignatura= document.getElementById("agregarAsignatura");
-if (btnAgregarAsignatura) {
-    btnAgregarAsignatura.addEventListener("click", function () {
-        var id= tablaAsignaturas.rows.length + 1;
-        var nombre= prompt("Ingrese el nombre de la asignatura:");
         if (nombre) {
             agregarFila(tablaAsignaturas, id, nombre);
         }
